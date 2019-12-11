@@ -9,6 +9,10 @@ import math
 
 def generateScatterPlot(plot_filename, plot_table):
 
+    # Grab just the first n rows for cleaner data view. Why 150? It's pretty!
+    first_n_rows = 150
+    plot_table = plot_table.iloc[0:first_n_rows].copy()
+
     # Set marker properties. Put each number in avg_pers_trait_table to the power of
     #   two to make differences between points more obvious. Muptiplied by 1.5 just
     #   because that factor made the chart look pretty.
