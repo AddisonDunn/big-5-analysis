@@ -26,3 +26,15 @@ def simple_cluster(df):
             temp_list.append(temp_string)
         pers_types.append(temp_list)
     print(pers_types)
+
+
+import scipy.cluster.hierarchy as shc
+import matplotlib.pyplot as plt
+
+def show_dendogram(df):
+    # We'll get the dendogram of the linkage to see what the best number of
+    #   clusters would likely be.
+    plt.figure(figsize=(10, 7))
+    plt.title("Cluster Dendograms")
+    dend = shc.dendrogram(shc.linkage(df, method='ward'))
+    plt.show()

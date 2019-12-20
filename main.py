@@ -30,6 +30,9 @@ def clean_data(df):
 
 from visualization import generateScatterPlot
 from cluster import simple_cluster
+from cluster import show_dendogram
+from sklearn.cluster import AgglomerativeClustering
+
 
 data_filename = "Big-5-Data/data.csv"
 
@@ -43,7 +46,19 @@ def main():
 
     # generateScatterPlot("5D-Big-5-Plot.html", pers_trait_table)
 
-    simple_cluster(pers_trait_table)
+    # simple_cluster(pers_trait_table)
+
+    # show_dendogram(pers_trait_table)
+    
+    # According to dendogram, 4 or even clusters look like the most effective
+    #   option (longing vertical distance without a horizontal line).
+    aggl_cluster = AgglomerativeClustering(n_clusters=4, affinity='euclidean', linkage='ward')
+    aggl_cluster.fit_predict(pers_trait_table)
+
+
+
+
+
 
 if __name__ == '__main__':
     main()
