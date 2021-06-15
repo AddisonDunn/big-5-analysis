@@ -34,7 +34,7 @@ from cluster import show_dendogram
 from sklearn.cluster import AgglomerativeClustering
 
 
-data_filename = "Big-5-Data/data.csv"
+data_filename = "../Big-5-Data/data.csv"
 
 def main():
     start_table = load_csv_to_dataframe(data_filename)
@@ -42,18 +42,18 @@ def main():
     # Cut out demographic data
     pers_trait_table = clean_data(start_table)
 
-    # print(avg_pers_trait_table.head())
+    print(pers_trait_table.head())
 
     # generateScatterPlot("5D-Big-5-Plot.html", pers_trait_table)
 
     # simple_cluster(pers_trait_table)
 
     # show_dendogram(pers_trait_table)
-    
+
     # According to dendogram, 4 or even clusters look like the most effective
     #   option (longing vertical distance without a horizontal line).
-    aggl_cluster = AgglomerativeClustering(n_clusters=4, affinity='euclidean', linkage='ward')
-    aggl_cluster.fit_predict(pers_trait_table)
+    # aggl_cluster = AgglomerativeClustering(n_clusters=4, affinity='euclidean', linkage='ward')
+    # aggl_cluster.fit_predict(pers_trait_table)
 
 
 
