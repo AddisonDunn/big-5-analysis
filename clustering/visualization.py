@@ -7,19 +7,16 @@ import math
 # Scatter plotting failed due to data being too discrete
 
 
-def generateScatterPlot(plot_filename, plot_table):
+def generateScatterPlot(plot_filename, plot_table, num_samples, marker_size_exp):
 
-    # Grab just the first n rows for cleaner data view. Why 150? It's pretty!
-    first_n_rows = 150
-    plot_table = plot_table.iloc[0:first_n_rows].copy()
+    plot_table = plot_table.iloc[0:num_samples].copy()
 
     # Set marker properties. Put each number in avg_pers_trait_table to the power of
-    #   two to make differences between points more obvious. Muptiplied by 1.5 just
-    #   because that factor made the chart look pretty.
-    markersize = [math.pow(i, 2)*1.5 for i in plot_table['C']]
+    #   two to make differences between points more obvious.
+    markersize = [math.pow(i, 2)*marker_size_exp for i in plot_table['C']]
     markercolor = plot_table['O']
 
-    #Make Plotly figure
+    # Make Plotly figure
     fig1 = go.Scatter3d(x=plot_table['E'],
                       y=plot_table['N'],
                       z=plot_table['A'],
@@ -31,12 +28,12 @@ def generateScatterPlot(plot_filename, plot_table):
                         line=dict (width=0.02),
                         mode='markers')
 
-    #Make Plot.ly Layout
+    # Make Plot.ly Layout
     mylayout = go.Layout(scene=dict(xaxis=dict(title="Extraversion"),
                          yaxis=dict(title="Neuroticism"),
                          zaxis=dict(title="Agreeableness")))
 
-    #Plot and save html
+    # Plot and save html
     plotly.offline.plot({"data": [fig1],
                          "layout": mylayout},
                          auto_open=True,

@@ -6,7 +6,7 @@ def get_cluster_centers(num_clusters, table):
     kmeans.fit(table)
     return kmeans.cluster_centers_
 
-def simple_cluster(df):
+def simple_cluster(df, num_clusters):
 
     # My guess at the number of clusters is 5
     cluster_centers = get_cluster_centers(5, df)

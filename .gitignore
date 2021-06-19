@@ -1,2 +1,4 @@
 .DS_STore
 _pycache__
+.ipynb_checkpoints
+cache
